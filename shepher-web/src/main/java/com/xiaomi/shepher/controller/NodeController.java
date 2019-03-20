@@ -170,6 +170,7 @@ public class NodeController {
         return "redirect:/clusters/" + cluster + "/nodes?path=" + ParamUtils.encodeUrl(parentPath);
     }
 
+
     /**
      * Displays the page of node creation.
      *
