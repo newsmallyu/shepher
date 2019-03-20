@@ -23,6 +23,7 @@ import org.apache.commons.mail.HtmlEmail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,7 +37,7 @@ public class GeneralMailSender extends MailSenderAbstract {
     @Value("${mail.hostname:}")
     private String hostname;
 
-    @Value("${mail.port:25}")
+    @Value("${mail.port:}")
     private int port;
 
     @Value("${mail.username:}")
@@ -50,11 +51,11 @@ public class GeneralMailSender extends MailSenderAbstract {
 
     @Value("${mail.fromname:}")
     private String fromname;
-
+    @Override
     protected void send(String mailAddress, String title, String content) {
-        if (StringUtils.isBlank(mailAddress)) {
-            return;
-        }
+            if (StringUtils.isBlank(mailAddress)) {
+                return;
+            }
 
         try {
             Email email = new HtmlEmail();
@@ -66,6 +67,7 @@ public class GeneralMailSender extends MailSenderAbstract {
             email.setMsg(content);
             email.addTo(mailAddress.split(mailAddressEndSeparator));
             email.send();
+            logger.info("email send done");
         } catch (Exception e) {
             logger.error("Send Mail Error", e);
         }

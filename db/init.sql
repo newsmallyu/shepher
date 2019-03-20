@@ -207,10 +207,10 @@ CREATE TABLE IF NOT EXISTS `user_team` (
 
 -- Dump completed on 2016-08-03 10:04:24
 
-INSERT INTO `cluster` VALUES (1,'local_test','zookeeper:2181',now());
+INSERT INTO `cluster` VALUES (1,'ECBD_E4','10.16.238.80:2181',now());
 
 INSERT INTO `team` VALUES (1,'admin',1,now());
 
-INSERT INTO `user` VALUES (1,'youradmin',now());
+INSERT INTO `user` VALUES (1,'admin',now());
 
 INSERT INTO `user_team` VALUES (1,1,1,100,10,now());

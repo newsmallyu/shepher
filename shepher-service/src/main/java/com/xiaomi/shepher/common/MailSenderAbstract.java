@@ -17,6 +17,7 @@
 package com.xiaomi.shepher.common;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -26,8 +27,8 @@ import java.util.Set;
  */
 
 public abstract class MailSenderAbstract implements MailSender {
-    @Value("${mail.mailToSuffix:}")
-    private String mailToSuffix;
+    @Value("${mail.mailTo:}")
+    private String mailTo;
 
     @Value("${mail.mailAddressEndSeparator:}")
     protected String mailAddressEndSeparator;
@@ -60,6 +61,7 @@ public abstract class MailSenderAbstract implements MailSender {
     }
 
     @Override
+    @Async
     public void noticeDelete(Set<String> receivers, String creator, String path, String cluster, String link) {
         this.send(getMailAddress(creator, receivers), String.format(TITLE_DELETE, creator, path, cluster),
                 String.format(CONTENT_DELETE, link, link));
@@ -80,8 +82,13 @@ public abstract class MailSenderAbstract implements MailSender {
     protected String getMailAddress(String creator, Set<String> receivers) {
         return getMailAddress(creator, Arrays.copyOf(receivers.toArray(), receivers.size(), String[].class));
     }
-
     protected String getMailAddress(String creator, String... receivers) {
+        StringBuilder mailAddress = new StringBuilder();
+        mailAddress.append(mailTo);
+        return mailAddress.toString();
+    }
+
+  /*  protected String getMailAddress(String creator, String... receivers) {
         StringBuilder mailAddress = new StringBuilder();
         mailAddress.append(creator).append(mailToSuffix);
         for (String receiver : receivers) {
@@ -94,6 +101,6 @@ public abstract class MailSenderAbstract implements MailSender {
 
         return mailAddress.toString();
     }
-
+*/
     protected abstract void send(String mailAddress, String title, String content);
 }

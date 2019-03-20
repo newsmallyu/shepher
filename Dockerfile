@@ -1,15 +1,11 @@
-FROM java:8-jdk
+FROM docker.neg/ecbd/openjdk:8u181-jdk-alpine3.8
 
+ENV PROJECT_BASE_DIR /opt/app/shepher/
 
-MAINTAINER banchuanyu <banchuanyu@xiaomi.com>
-MAINTAINER zhangpeng <zhangpeng@xiaomi.com>
+WORKDIR $PROJECT_BASE_DIR
 
-ENV SHEPHER_HOME /usr/shepher
-ENV BASE_DIR /usr/shepher
+COPY ./lib/*.jar $PROJECT_BASE_DIR
+COPY ./bin/run.sh $PROJECT_BASE_DIR
 
-WORKDIR $SHEPHER_HOME
-
-    COPY ./lib/*.jar $SHEPHER_HOME/lib/
-    COPY ./bin/wait-for-it.sh $SHEPHER_HOME
-    COPY ./conf/* $SHEPHER_HOME/conf/
-CMD ./wait-for-it.sh -t 300 db:3306 && java -jar lib/shepher-web-1.0.jar --spring.config.location=conf/application-base.properties,conf/application-docker.properties -Djava.ext.dirs=lib
+RUN chmod +x *.sh
+ENTRYPOINT ["bash","run.sh"]
