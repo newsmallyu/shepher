@@ -67,7 +67,7 @@ public class GeneralMailSender extends MailSenderAbstract {
             email.setMsg(content);
             email.addTo(mailAddress.split(mailAddressEndSeparator));
             email.send();
-            logger.info("email send done");
+            logger.info("email send done .");
         } catch (Exception e) {
             logger.error("Send Mail Error", e);
         }
