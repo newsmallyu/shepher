@@ -205,6 +205,16 @@ CREATE TABLE IF NOT EXISTS `user_team` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Dumping structure for table shepher.system_user
+CREATE TABLE IF NOT EXISTS `system_user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL DEFAULT '',
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `password` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_nshepherame` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
 -- Dump completed on 2016-08-03 10:04:24
 
 INSERT INTO `cluster` VALUES (1,'ECBD_E4','10.16.238.80:2181',now());
@@ -214,3 +224,5 @@ INSERT INTO `team` VALUES (1,'admin',1,now());
 INSERT INTO `user` VALUES (1,'admin',now());
 
 INSERT INTO `user_team` VALUES (1,1,1,100,10,now());
+
+INSERT INTO `system_user` VALUES (1,'admin',now(),'e10adc3949ba59abbe56e057f20f883e');

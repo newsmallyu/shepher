@@ -107,10 +107,10 @@ public class TeamService {
         }
 
         if (userTeamBiz.listUserByTeamId(teamId).contains(member.getName())) {
-            throw ShepherException.createUserExistsException();
+            userTeamBiz.update(member.getId(), teamId, role, Status.AGREE);
+        }else {
+            userTeamBiz.create(member.getId(), teamId, role, Status.AGREE);
         }
-
-        userTeamBiz.create(member.getId(), teamId, role, Status.AGREE);
         Team team = this.get(teamId);
         if (team == null) {
             throw ShepherException.createNoSuchTeamException();

@@ -37,6 +37,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/admin">Clusters</a></li>
                         <li><a href="/permission">Permission</a></li>
+                        <li><a href="/user">User Manage</a></li>
                     </ul>
                 </li>
             </#if >

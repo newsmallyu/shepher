@@ -50,6 +50,15 @@ public class UserTeamBiz {
         DaoValidator.checkSqlReturn(count, ShepherConstants.DB_OPERATE_CREATE);
         return userTeam;
     }
+    public UserTeam update(long userId, long teamId, Role role, Status status) throws ShepherException {
+        if (role == null || status == null) {
+            throw ShepherException.createIllegalParameterException();
+        }
+        UserTeam userTeam = new UserTeam(userId, teamId, role.getValue(), status.getValue());
+        int count = userTeamMapper.update(userTeam);
+        DaoValidator.checkSqlReturn(count, ShepherConstants.DB_OPERATE_CREATE);
+        return userTeam;
+    }
 
     public int updateStatus(long id, Status status) throws ShepherException {
         if (status == null) {

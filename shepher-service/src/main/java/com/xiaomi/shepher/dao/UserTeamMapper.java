@@ -34,6 +34,9 @@ public interface UserTeamMapper {
     @Insert("INSERT INTO user_team (user_id, team_id, role, status) VALUES (#{userId}, #{teamId}, #{roleValue}, #{statusValue})")
     int create(UserTeam userTeam);
 
+    @Update("UPDATE user_team SET team_id = #{teamId},role = #{roleValue},status = #{statusValue} WHERE user_id = #{userId}")
+    int update(UserTeam userTeam);
+
     @Update("UPDATE user_team SET status = #{status} WHERE id = #{id}")
     int updateStatus(@Param("id") long id, @Param("status") int status);
 

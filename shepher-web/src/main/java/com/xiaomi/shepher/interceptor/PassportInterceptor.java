@@ -101,6 +101,12 @@ public class PassportInterceptor extends HandlerInterceptorAdapter {
             if (context != null) {
                 userName = ((UserDetails) context.getAuthentication().getPrincipal()).getUsername();
             }
+        } else if (ShepherConstants.LOGIN_TYPE_SQL.equals(loginType.toUpperCase())){
+            SecurityContextImpl context =
+                    (SecurityContextImpl) request.getSession().getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+            if (context != null) {
+                userName = ((UserDetails) context.getAuthentication().getPrincipal()).getUsername();
+            }
         } else {
             throw ShepherException.createIllegalLoginTypeException();
         }

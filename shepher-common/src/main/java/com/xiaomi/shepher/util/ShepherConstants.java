@@ -28,7 +28,7 @@ public interface ShepherConstants {
     String LOGIN_TYPE_LDAP = "LDAP";
     String LOGIN_TYPE_CAS = "CAS";
     String LOGIN_TYPE_DEMO = "DEMO";
-
+    String LOGIN_TYPE_SQL = "SQL";
     int DEFAULT_ROLEVALUE = 0;
     String ADMIN = "admin";
 }
