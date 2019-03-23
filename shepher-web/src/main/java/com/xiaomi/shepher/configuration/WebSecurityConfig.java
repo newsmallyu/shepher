@@ -149,9 +149,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new UserFromSql();
     }
 
-    public static void main(String[] args) {
-        Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
-        String s = md5PasswordEncoder.encodePassword("123456", new String());
-        System.out.println(s);
-    }
 }
