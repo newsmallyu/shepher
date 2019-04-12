@@ -54,6 +54,20 @@ public class NodeDAO {
             ZkPool.releaseZkClient(cluster, zkClient);
         }
     }
+  /*  public List<String> getClients(String cluster, String path) throws ShepherException {
+        ZkClient zkClient = ZkPool.getZkClient(cluster);
+        try {
+            if (zkClient == null) {
+                return Collections.emptyList();
+            }
+            return ;
+        } catch (Exception e) {
+            LOGGER.warn("Fail to get children, Exception:", e);
+            throw ShepherException.createUnknownException();
+        } finally {
+            ZkPool.releaseZkClient(cluster, zkClient);
+        }
+    }*/
 
     public boolean exists(String cluster, String path) {
         ZkClient zkClient = ZkPool.getZkClient(cluster);

@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String add(@RequestParam("id") String id)  {
+    public String delete(@RequestParam("id") String id)  {
         systemUserService.delUser(id);
         return "redirect:/user";
     }
